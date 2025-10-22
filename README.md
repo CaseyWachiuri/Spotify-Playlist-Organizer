@@ -1,16 +1,25 @@
-# React + Vite
+# Spotify Playlist Organizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Date: 2025/10/22
 
-Currently, two official plugins are available:
+#### By Casey Waweru
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
+A simple playlist organizer for Spotify that helps remove repeated songs in the playlist. Especially helpful when you have collaborative playlists with someone cause you can end up adding the same song without realizing and spotify doesn't have functionality to prevent this.
 
-## React Compiler
+## Installation Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation instruction
+```
+git clone https://github.com/CaseyWachiuri/Spotify-Playlist-Organizer.git
 
-## Expanding the ESLint configuration
+```
+## Technologies used
+React, Tailwind, Firebase, Spotify Developer API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Support and contact details
+github.com/CaseyWachiuri
+
+### License
+The content of this site is licensed under the MIT license
+Copyright (c) 2018.
