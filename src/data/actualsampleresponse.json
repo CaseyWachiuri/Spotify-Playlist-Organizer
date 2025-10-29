@@ -1,0 +1,81 @@
+{
+    "href": "https://api.spotify.com/v1/users/316eojeztcjmgffijavlsmoksrfe/playlists?offset=5&limit=2&locale=en-US,en;q%3D0.5",
+    "limit": 2,
+    "next": "https://api.spotify.com/v1/users/316eojeztcjmgffijavlsmoksrfe/playlists?offset=7&limit=2&locale=en-US,en;q%3D0.5",
+    "offset": 5,
+    "previous": "https://api.spotify.com/v1/users/316eojeztcjmgffijavlsmoksrfe/playlists?offset=3&limit=2&locale=en-US,en;q%3D0.5",
+    "total": 131,
+    "items": [
+        {
+            "collaborative": false,
+            "description": "resident evil | resident evil vibes | resident evil music | re",
+            "external_urls": {
+                "spotify": "https://open.spotify.com/playlist/6Ay02g83iQ9HyJnFCIPOA4"
+            },
+            "href": "https://api.spotify.com/v1/playlists/6Ay02g83iQ9HyJnFCIPOA4",
+            "id": "6Ay02g83iQ9HyJnFCIPOA4",
+            "images": [
+                {
+                    "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da8420367b95de00588738601a39",
+                    "height": null,
+                    "width": null
+                }
+            ],
+            "name": "ultimate resident evil vibes",
+            "owner": {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/user/31k2s32k72wbzrhxs2wnzuvnxrje"
+                },
+                "href": "https://api.spotify.com/v1/users/31k2s32k72wbzrhxs2wnzuvnxrje",
+                "id": "31k2s32k72wbzrhxs2wnzuvnxrje",
+                "type": "user",
+                "uri": "spotify:user:31k2s32k72wbzrhxs2wnzuvnxrje",
+                "display_name": "beck🎧"
+            },
+            "public": true,
+            "snapshot_id": "AAAARpG6eeow/hkJKHcyuMILifM3YaT/",
+            "tracks": {
+                "href": "https://api.spotify.com/v1/playlists/6Ay02g83iQ9HyJnFCIPOA4/tracks",
+                "total": 81
+            },
+            "type": "playlist",
+            "uri": "spotify:playlist:6Ay02g83iQ9HyJnFCIPOA4",
+            "primary_color": null
+        },
+        {
+            "collaborative": false,
+            "description": "Dance to the rhythm of Africa – your playlist for infectious beats and uplifting tunes. sbmt.to&#x2F;sound-sculptors",
+            "external_urls": {
+                "spotify": "https://open.spotify.com/playlist/05V5kClj17l4XYjljffdDm"
+            },
+            "href": "https://api.spotify.com/v1/playlists/05V5kClj17l4XYjljffdDm",
+            "id": "05V5kClj17l4XYjljffdDm",
+            "images": [
+                {
+                    "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84fb9657ee20645354af762e4d",
+                    "height": null,
+                    "width": null
+                }
+            ],
+            "name": "Groovy AfroVibes",
+            "owner": {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/user/2hx2p0fdrp910s6fc524slvar"
+                },
+                "href": "https://api.spotify.com/v1/users/2hx2p0fdrp910s6fc524slvar",
+                "id": "2hx2p0fdrp910s6fc524slvar",
+                "type": "user",
+                "uri": "spotify:user:2hx2p0fdrp910s6fc524slvar",
+                "display_name": "LEEN"
+            },
+            "public": true,
+            "snapshot_id": "AAAEECzjGh+joH2GLlLShoXc+PKn32/e",
+            "tracks": {
+                "href": "https://api.spotify.com/v1/playlists/05V5kClj17l4XYjljffdDm/tracks",
+                "total": 85
+            },
+            "type": "playlist",
+            "uri": "spotify:playlist:05V5kClj17l4XYjljffdDm",
+            "primary_color": null
+        }
+}

@@ -4,6 +4,8 @@ const generateRandomString = (length) => {
   return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
 
+export const codeVerifier  = generateRandomString(64);
+
 const base64encode = (input) => {
   return btoa(String.fromCharCode(...new Uint8Array(input)))
     .replace(/=/g, '')
@@ -11,16 +13,15 @@ const base64encode = (input) => {
     .replace(/\//g, '_');
 }
 
-const codeVerifier  = generateRandomString(64);
-
 const sha256 = async (plain) => {
   const encoder = new TextEncoder()
   const data = encoder.encode(plain)
   return window.crypto.subtle.digest('SHA-256', data)
 }
 
-const hashed = async() => {await sha256(codeVerifier)};
-const codeChallenge = base64encode(hashed);
+export const codeChallenge = async () => {
+  const hashed = await sha256(codeVerifier);
+  const codeChallenge = base64encode(hashed);
+  return codeChallenge;
+}
 
-console.log(codeVerifier);
-console.log(codeChallenge);
