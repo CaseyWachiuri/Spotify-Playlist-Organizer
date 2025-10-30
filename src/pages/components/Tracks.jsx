@@ -3,8 +3,6 @@ import Tracklist from "./Tracklist.jsx";
 
 
 function Tracks() {
-  const [tracks, setTracks] = useEffect("");
-
   return (
     <>
       <div className="border m-5 p-1  text-black-800  flex justify-between " >
