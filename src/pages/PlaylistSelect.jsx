@@ -1,5 +1,7 @@
-import React, { useNavigate, useState, useEffect } from "react-router-dom";
+import React, { useState, useEffect  } from 'react';
 import { fetchApi } from "../utils/auth";
+import { useNavigate } from "react-router-dom";
+
 
 function PlaylistSelect() {
   const navigate = useNavigate();
@@ -28,13 +30,12 @@ function PlaylistSelect() {
   }
 
   return (
-    <Form onSubmit={handleSelect}>
-      <select name="playlist">
-        {playlists.map(p => (
-          <option key={p.id} value={p.id} >{p.name}</option>
-        ))}
-      </select>
-    </Form>
+    // Test out with a form to see how it works without immediate redirect upon select
+    <select id="playlist-dropdown" name="playlist" onChange={ handleSelect }>
+      {playlists.map(p => (
+        <option key={p.id} value={p.id} >{p.name}</option>
+      ))}
+    </select>
   )
 }
 
