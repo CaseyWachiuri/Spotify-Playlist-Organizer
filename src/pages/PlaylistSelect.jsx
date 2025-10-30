@@ -1,9 +1,9 @@
 import React, { useNavigate, useEffect } from "react-router-dom";
 
-const [data, setData] = useEffect([]);
-
-
 function PlaylistSelect() {
+  // Subject to change
+  const [data, setData] = useEffect([]);
+
   function handleOnSubmit(e) {
     e.preventDefault();
     console.log(e.target.value);
