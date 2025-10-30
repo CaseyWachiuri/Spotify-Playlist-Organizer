@@ -1,6 +1,6 @@
 const client_id = import.meta.env.VITE_CLIENT_ID;
 const client_secret = import.meta.env.VITE_CLIENT_SECRET;
-const redirecturi = "http://192.168.0.10:5173/callback";
+const redirecturi = "http://192.168.0.10:5173/";
 
 // Specify the scopes that the app has in regards to the Spotify API
 const scope="user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private";
@@ -30,7 +30,7 @@ export const redirectToAuthCodeFlow = async () => {
   const codeVerifier  = generateRandomString(64);
   const codeChallenge = async () => {
     const hashed = await sha256(codeVerifier);
-    const codeChallenge = base64encode(hashed);
+    const codeChallenge = await base64encode(hashed);
     return codeChallenge;
   };
 
@@ -53,6 +53,9 @@ export const getAccessToken = async (code) => {
   // Stored in the previous step
   const codeVerifier = localStorage.getItem('codeVerifier');
 
+  if (!codeVerifier) {
+    console.error("PKCE Error,: code_verifier is missing!!");
+  }
   // Remove codeVerifier for security purposes
   //localStorage.removeItem('codeVerifier');
 
@@ -78,6 +81,7 @@ export const getAccessToken = async (code) => {
     throw new Error(`Token request error: ${response.status} - ${response.statusText}`);
   }
 
+
   // Holds the access token, refresh token and expiry
   return data;
 }
@@ -102,3 +106,12 @@ export const fetchApi = async (url, method = 'GET', body = null) => {
   // Remember to add code to handle failed response. I'm too tired to think about it right now
   return response.status === 204 ? null : response.json();
 };
+
+export const logout = () => {
+  // Backup in case the clear function shits the bed
+  //localStorage.removeItem('access_token');
+  //localStorage.removeItem('refresh_token');
+  //localStorage.removeItem('expires_at');
+
+  localStorage.clear();
+}
