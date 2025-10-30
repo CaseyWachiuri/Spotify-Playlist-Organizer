@@ -3,12 +3,17 @@ import Header from "./Header";
 import Tracklist from "./Tracklist";
 import Tracks from "./Tracks";
 import { fetchApi } from "../../utils/auth";
+import { useParams, useNavigate } from 'react-router-dom';
 
 function PlaylistView() {
   const [playlistInfo, setPlaylistInfo] = useState([]);
   const [tracks, setTracks] = useState([]);
+  // figure out how to pass the playlist id to this element
 
   useEffect(() => {
+    const PlaylistDetails = async () => {
+    }
+
     const fetchAllData = async () => {
       try{
         const info = await fetchApi(`https://api.spotify.com/v1/playlists/${playlistId}`)
@@ -30,7 +35,7 @@ function PlaylistView() {
     }
 
     fetchAllData();
-  }, []);
+  }, []); // Add control feature to this element later
 
   return (
     <>

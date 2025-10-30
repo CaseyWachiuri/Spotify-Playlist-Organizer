@@ -2,9 +2,9 @@ import React, { useNavigate, useState, useEffect } from "react-router-dom";
 import { fetchApi } from "../utils/auth";
 
 function PlaylistSelect() {
-  // Subject to change
+  const navigate = useNavigate();
   const [playlists, setPlaylists] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); // Add error handling later
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -18,18 +18,20 @@ function PlaylistSelect() {
     }
 
     fetchPlaylists();
-  },[]);
+  },[navigate]);
 
-  function handleOnSubmit(e) {
-    e.preventDefault();
-    console.log(e.target.value);
+  function handleSelect(e) {
+    const playlistId = e.target.value;
+    if (playlistId) {
+      navigate(`/playlist/${playlistId}`);
+    }
   }
 
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <Form onSubmit={handleSelect}>
       <select name="playlist">
         {playlists.map(p => (
-          <option key={p.id} value={p.id} >p.name</option>
+          <option key={p.id} value={p.id} >{p.name}</option>
         ))}
       </select>
     </Form>
