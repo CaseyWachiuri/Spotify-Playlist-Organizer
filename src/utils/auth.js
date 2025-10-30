@@ -1,16 +1,21 @@
 const client_id = import.meta.env.VITE_CLIENT_ID;
 const client_secret = import.meta.env.VITE_CLIENT_SECRET;
-const redirecturi = "http://192.168.0.10:5173/";
+const redirecturi = "http://localhost:5173/callback";
+const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 // Specify the scopes that the app has in regards to the Spotify API
 const scope="user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private";
 
 const generateRandomString = (length) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const values = crypto.getRandomValues(new Uint8Array(length));
+  const values = window.crypto.getRandomValues(new Uint8Array(length));
   return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
-
+const sha256 = async (plain) => {
+  const encoder = new TextEncoder()
+  const data = encoder.encode(plain)
+  return window.crypto.subtle.digest('SHA-256', data)
+}
 
 const base64encode = (input) => {
   return btoa(String.fromCharCode(...new Uint8Array(input)))
@@ -19,34 +24,35 @@ const base64encode = (input) => {
     .replace(/\//g, '_');
 }
 
-const sha256 = async (plain) => {
-  const encoder = new TextEncoder()
-  const data = encoder.encode(plain)
-  return window.crypto.subtle.digest('SHA-256', data)
-}
-
-
 export const redirectToAuthCodeFlow = async () => {
-  const codeVerifier  = generateRandomString(64);
-  const codeChallenge = async () => {
-    const hashed = await sha256(codeVerifier);
+  try {
+    const codeVerifier  = generateRandomString(64);
+    const hashed =  await sha256(codeVerifier);
     const codeChallenge = await base64encode(hashed);
-    return codeChallenge;
-  };
 
-  // Store the verifier for later authentication
-  localStorage.setItem('codeVerifier', codeVerifier);
+    // Store the verifier for later authentication
+    localStorage.setItem('codeVerifier', codeVerifier);
+    const actualChallenge = codeChallenge;
 
-  const params = new URLSearchParams({
-    response_type: 'code',
-    client_id: client_id,
-    scope,
-    code_challenge_method: 'S256',
-    code_challenge: codeChallenge,
-    redirect_uri: redirecturi,
-  });
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: client_id,
+      scope,
+      code_challenge_method: 'S256',
+      code_challenge: actualChallenge,
+      redirect_uri: redirecturi,
+    });
 
-  window.location.href = `https://accounts.spotify.com/authorize?${params.toString()}`;
+    //console.log(codeVerifier);
+    //console.log(codeChallenge());
+    authUrl.search = new URLSearchParams(params).toString();
+    //console.log(authUrl.search);
+    window.location.href = authUrl.toString();
+  } catch ( error ) {
+    console.error("This is the error:", error);
+  }
+
+  //window.location.href = `https://accounts.spotify.com/authorize?${params.toString()}`;
 };
 
 export const getAccessToken = async (code) => {
