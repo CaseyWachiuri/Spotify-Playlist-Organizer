@@ -10,8 +10,9 @@ function Login() {
   // Style the div container into a card
   return (
     <>
-        <div>
-          <button onClick={handleClick} className="rounded-none bg-red-400 px-5 py-0.5 m-2 text-sm decoration-sky-50 ">Login</button>
+        <div className="h-screen flex flex-col items-center justify-center ">
+          <p className="flex justify-center ">Welcome to the Spotify Playlist Organizer!!!</p>
+          <button onClick={handleClick} className="rounded-none bg-red-400 px-10 py-4 m-2 text-sm decoration-sky-50 ">Login</button>
         </div>
     </>
   )

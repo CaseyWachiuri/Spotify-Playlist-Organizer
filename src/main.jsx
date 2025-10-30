@@ -5,6 +5,8 @@ import App from './App.jsx'
 
 import FailedLogin from "./pages/FailedLogin";
 import ErrorPage from "./pages/Error";
+import Callback from "./pages/Callback";
+//import PlaylistSelect from "./pages/PlaylistSelect";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
   /*{
     path: '/callback',
     element: <Callback />
+  },
+  /*{
+    path: '/selectplaylist',
+    element: <PlaylistSelect />
   },
   {
     path: '',
