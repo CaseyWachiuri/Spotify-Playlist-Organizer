@@ -12,8 +12,8 @@ function Callback() {
     if(code) {
       getAccessToken(code)
         .then(data => {
-          localStorage.getItem('access_token', data.access_token);
-          localStorage.getItem('refresh_token', data.refresh_token);
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('refresh_token', data.refresh_token);
           localStorage.setItem('expires_at', Date.now() + data.expires_in * 1000);
 
           setStatus("Great success! I like!! Redirecting....");

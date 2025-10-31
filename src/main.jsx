@@ -8,6 +8,7 @@ import ErrorPage from "./pages/Error";
 import Callback from "./pages/Callback";
 import PlaylistSelect from "./pages/PlaylistSelect";
 import PlaylistView from "./pages/components/PlaylistView";
+import Logout from "./pages/forcedlogout";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path:'/playlist/:playlistId',
     element: <PlaylistView />
+  },
+  {
+    path: '/logout',
+    element: <Logout />
   },
   /* {
   // Display Playlist Tracks

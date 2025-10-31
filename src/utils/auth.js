@@ -75,13 +75,14 @@ export const getAccessToken = async (code) => {
       client_id: client_id,
       grant_type: 'authorization_code',
       code,
-      redirect_uri: redirecturi,
+      redirect_uri: redirecturl,
       code_verifier: codeVerifier,
     }),
   }
 
   const response = await fetch(url, payload);
   const data = await response.json();
+  console.log(data);
 
   if(!response.ok) {
     throw new Error(`Token request error: ${response.status} - ${response.statusText}`);
