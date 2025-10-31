@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAccessToken } from "../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 function Callback() {
   const [status, setStatus] = useState("Getting token");

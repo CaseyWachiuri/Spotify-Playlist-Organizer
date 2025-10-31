@@ -1,10 +1,10 @@
 const client_id = import.meta.env.VITE_CLIENT_ID;
 const client_secret = import.meta.env.VITE_CLIENT_SECRET;
-const redirecturi = "http://localhost:5173/callback";
+const redirecturl = "http://127.0.0.1:5173/callback"
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 // Specify the scopes that the app has in regards to the Spotify API
-const scope="user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private";
+const scope="user-read-private user-read-email";
 
 const generateRandomString = (length) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -40,7 +40,7 @@ export const redirectToAuthCodeFlow = async () => {
       scope,
       code_challenge_method: 'S256',
       code_challenge: actualChallenge,
-      redirect_uri: redirecturi,
+      redirect_uri: redirecturl,
     });
 
     //console.log(codeVerifier);
