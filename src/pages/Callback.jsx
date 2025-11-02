@@ -3,7 +3,8 @@ import { getAccessToken } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 
 function Callback() {
-  const [status, setStatus] = useState("Getting token");
+  const [status, setStatus] = useState("Getting token...");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -17,6 +18,7 @@ function Callback() {
           localStorage.setItem('expires_at', Date.now() + data.expires_in * 1000);
 
           setStatus("Great success! I like!! Redirecting....");
+          navigate('/selectplaylist');
           // Add use navigate to redirect to the playlist selector page (./selectplaylist)
         })
         .catch(error => {
@@ -27,7 +29,7 @@ function Callback() {
       setStatus("Missing access token with URL failure");
       // Navigate back to Login (./)
     }
-  }, [])
+  }, [navigate])
 
   return (
     // Remember to deactivate the navigate in case it interferes when you implement it so you can style the page

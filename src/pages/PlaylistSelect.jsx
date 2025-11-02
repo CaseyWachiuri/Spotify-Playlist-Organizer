@@ -20,13 +20,17 @@ function PlaylistSelect() {
     }
 
     fetchPlaylists();
-  },[navigate]);
+  },[]);
 
   function handleSelect(e) {
     const playlistId = e.target.value;
     if (playlistId) {
       navigate(`/playlist/${playlistId}`);
     }
+  }
+
+  if(!playlists) {
+    return <div className="border m-3 p-2">Loading...</div>
   }
 
   return (
