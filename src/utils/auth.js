@@ -4,7 +4,7 @@ const redirecturl = "http://127.0.0.1:5173/callback"
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 // Specify the scopes that the app has in regards to the Spotify API
-const scope="user-read-private user-read-email";
+const scope="user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private";
 
 const generateRandomString = (length) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
