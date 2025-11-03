@@ -13,6 +13,10 @@ function PlaylistView() {
   const [tracks, setTracks] = useState([]);
   const { playlistId } = params;
 
+  function handleNavigation() {
+    navigate('/selectplaylist');
+  }
+
   useEffect(() => {
 
     const fetchAllData = async () => {
@@ -71,6 +75,7 @@ function PlaylistView() {
     );
   }
 
+
   if(!playlistInfo) {
     return <div>Loading Playlists...</div>
   }
@@ -105,7 +110,7 @@ function PlaylistView() {
     <>
       <Navbar />
       <div className="rounded-2xl shadow-lg m-3 p-2">
-        <Header playlist={playlistInfo} handleDups={handleDups} />
+        <Header playlist={playlistInfo} handleDups={handleDups} handleNavigation= {handleNavigation} />
         <Tracks />
         <ul > { trackList }</ul>
       </div>

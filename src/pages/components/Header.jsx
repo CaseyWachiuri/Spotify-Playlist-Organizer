@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Header({playlist, handleDups}) {
+function Header({playlist, handleDups, handleNavigation}) {
   if(!playlist) return <div>Loading Playlists...</div> // add centering later
 
   return (
     <div className="  m-5 text-black-800 mb-4 flex justify-around " >
-      <button class="absolute top-2 left-2 bg-red-400  flex items-center p-2 rounded-3xl">Back</button>
+      <button class="absolute top-2 left-2 bg-red-400  flex items-center p-2 rounded-3xl"onClick={handleNavigation}>Back</button>
       <img className="shadow-lg rounded-2xl flex"src={playlist.images?.[1]?.url} alt={`${playlist.name} Cover`} />
       <div className="m-3 p-2">
         <div className=" flex justify-left font-bold text-2xl m-3 p-2">

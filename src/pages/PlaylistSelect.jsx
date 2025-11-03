@@ -1,7 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import { fetchApi } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "./components/Navbar";
 
 function PlaylistSelect() {
   const navigate = useNavigate();
@@ -36,11 +36,14 @@ function PlaylistSelect() {
   return (
     // Test out with a form to see how it works without immediate redirect upon select
     <>
-    <select className="border " id="playlist-dropdown" name="playlist" onChange={ handleSelect }>
-      {playlists.map(p => (
-        <option key={p.id} value={p.id} >{p.name}</option>
-      ))}
-    </select>
+      <Navbar />
+      <div className="h-screen flex items-center justify-center">
+        <select className="rounded-2xl shadow-2xl shadow-lg m-5 p-5 " id="playlist-dropdown" name="playlist" onChange={ handleSelect }>
+          {playlists.map(p => (
+            <option key={p.id} value={p.id} >{p.name}</option>
+          ))}
+        </select>
+      </div>
     </>
   )
 }

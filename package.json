@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.15",
+    "@vitejs/plugin-basic-ssl": "^2.1.0",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "firebase": "^12.4.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^6.30.1",
-    "tailwindcss": "^4.1.15"
+    "tailwindcss": "^4.1.15",
+    "vite-plugin-mkcert": "^1.17.9"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.28.5",
