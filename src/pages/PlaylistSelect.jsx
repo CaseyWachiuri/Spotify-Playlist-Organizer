@@ -11,8 +11,8 @@ function PlaylistSelect() {
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const data = await fetchApi("https://api.spotify.com/v1/me/playlists?limit=10");
-        setPlaylists(data.item);
+        const data = await fetchApi("https://api.spotify.com/v1/me/playlists");
+        setPlaylists(data.items);
       } catch(error) {
         console.error("failed to fetch playlists", error);
         setError("Couldn't load the playlists");
@@ -20,7 +20,7 @@ function PlaylistSelect() {
     }
 
     fetchPlaylists();
-  },[]);
+  },[navigate]);
 
   function handleSelect(e) {
     const playlistId = e.target.value;
@@ -35,11 +35,13 @@ function PlaylistSelect() {
 
   return (
     // Test out with a form to see how it works without immediate redirect upon select
-    <select id="playlist-dropdown" name="playlist" onChange={ handleSelect }>
+    <>
+    <select className="border " id="playlist-dropdown" name="playlist" onChange={ handleSelect }>
       {playlists.map(p => (
         <option key={p.id} value={p.id} >{p.name}</option>
       ))}
     </select>
+    </>
   )
 }
 

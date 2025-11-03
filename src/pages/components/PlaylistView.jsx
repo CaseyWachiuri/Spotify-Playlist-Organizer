@@ -6,13 +6,13 @@ import { fetchApi } from "../../utils/auth";
 import { useParams, useNavigate } from 'react-router-dom';
 
 function PlaylistView() {
+  const navigate = useNavigate();
+  const params = useParams();
   const [playlistInfo, setPlaylistInfo] = useState([]);
   const [tracks, setTracks] = useState([]);
-  // figure out how to pass the playlist id to this element
+  const { playlistId } = params;
 
   useEffect(() => {
-    const PlaylistDetails = async () => {
-    }
 
     const fetchAllData = async () => {
       try{
@@ -20,28 +20,61 @@ function PlaylistView() {
         setPlaylistInfo(info);
 
         let tracks = [];
-        let nextUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks/?limit=50`
+        let nextUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks/?limit=10`
 
-        while(nextUri) {
+        while(nextUrl) {
           const data = await fetchApi(nextUrl);
           tracks = tracks.concat(data.items);
           nextUrl = data.next;
         }
 
         setTracks(tracks);
+
       } catch (error) {
         console.error("Something went wrong and I don't know what", error);
       }
     }
 
     fetchAllData();
-  }, []); // Add control feature to this element later
+  }, [playlistId, navigate]);
 
+  if(!playlistInfo) {
+    return <div>Loading Playlists...</div>
+  }
+  //console.log(tracks);
+  //const artistName = tracks.artists?.[0]?.name;
+  console.log(tracks.map((item, index) => console.log(item.track.artists?.[0]?.name)));
+
+  const duration = (mil) => {
+    const totalSeconds = Math.floor(mil /1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}:${seconds}`;
+  }
+
+  const trackList = tracks.map((item, index) => {
+    return (
+      <li className="border-t-1 border-gray-100 text-black-800 m-5 p-1 flex justify-between ">
+        <div className="w-5/12 truncate pr-4 ">
+          { item.track.name }
+        </div>
+        <div className="w-3/12 truncate pr-4">
+          { item.track.artists?.[0]?.name }
+        </div >
+        <div className="w-3/12 truncate pr-4">
+          { item.track.album.name }
+        </div>
+        <div className="w-1/12 text-right truncate pr-4">
+          { duration(item.track.duration_ms) }
+        </div>
+      </li>
+    )
+  })
   return (
     <>
       <Header playlist={playlistInfo} />
-      <Tracklist />
-      <Tracks trackItems={tracks} />
+      <Tracks />
+      <ul > { trackList }</ul>
     </>
   )
 }

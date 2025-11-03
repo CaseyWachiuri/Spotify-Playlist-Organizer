@@ -95,7 +95,9 @@ export const getAccessToken = async (code) => {
 
 export const fetchApi = async (url, method = 'GET', body = null) => {
   const token = localStorage.getItem('access_token');
-  if (!token) throw new Error("No accesss token");
+  if (!token) {
+    console.log("No access token");
+  }
 
   const headers = {
     'Authorization': `Bearer ${token}`,
