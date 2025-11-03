@@ -48,6 +48,7 @@ function PlaylistView() {
      - Save non-duplicate items into an array called non-dupes, delete the values in the playlist, then readd them with a POST/PUT command to repopulate the playlist
      - Find a way to use the spotify positions value that is provided to delete more accurately and avoid unnecessary read/writes
      - Add batch processing to avoid hitting the API rate limits
+     - Look into how you can also use the track ID with these possible solutions
   */
   async function handleDups() {
     const seenUrl = new Set();
@@ -94,7 +95,7 @@ function PlaylistView() {
 
   const trackList = tracks.map((item, index) => {
     return (
-      <li className="border-t-1 border-gray-100 text-black-600 m-5 p-1 flex justify-between ">
+      <li key={index} className="border-t-1 border-gray-100 text-black-600 m-5 p-1 flex justify-between ">
         <div className="w-5/12 truncate pr-4 ">
           { item.track.name }
         </div>
