@@ -11,7 +11,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-red-400  mb-3 ">
+    <nav className="bg-red-400 p-4 mb-3 ">
       <div className="max-w-10xl h-15 flex justify-end pr-5 items-center m-auto">
         <button onClick={handleLeaving}>Logout</button>
       </div>
