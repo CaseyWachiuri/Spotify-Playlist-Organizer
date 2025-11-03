@@ -16,7 +16,7 @@ function Tracks() {
         <div className="border w-3/12 truncate pr-4 ">
           Album
         </div>
-        <div className="border w-1/14 truncate pr-10 ">
+        <div className="border w-1/12 truncate pr-4 text-right ">
           Time
         </div>
       </div>
