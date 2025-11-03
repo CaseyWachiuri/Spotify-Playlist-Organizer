@@ -1,8 +1,11 @@
 const client_id = import.meta.env.VITE_CLIENT_ID;
-const client_secret = import.meta.env.VITE_CLIENT_SECRET;
+
+// redirectUrl when working on local host
 //const redirecturl = "http://127.0.0.1:5173/callback"
-const authUrl = new URL("https://accounts.spotify.com/authorize");
+
+// redirectUrl when working with the live app
 const redirecturl = "https://spotplaylistorganizer.netlify.app/callback"
+const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 // Specify the scopes that the app has in regards to the Spotify API
 const scope="user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private";
@@ -44,16 +47,12 @@ export const redirectToAuthCodeFlow = async () => {
       redirect_uri: redirecturl,
     });
 
-    //console.log(codeVerifier);
-    //console.log(codeChallenge());
     authUrl.search = new URLSearchParams(params).toString();
-    //console.log(authUrl.search);
+
     window.location.href = authUrl.toString();
   } catch ( error ) {
     console.error("This is the error:", error);
   }
-
-  //window.location.href = `https://accounts.spotify.com/authorize?${params.toString()}`;
 };
 
 export const getAccessToken = async (code) => {
@@ -89,7 +88,6 @@ export const getAccessToken = async (code) => {
     throw new Error(`Token request error: ${response.status} - ${response.statusText}`);
   }
 
-
   // Holds the access token, refresh token and expiry
   return data;
 }
@@ -118,10 +116,5 @@ export const fetchApi = async (url, method = 'GET', body = null) => {
 };
 
 export const logout = () => {
-  // Backup in case the clear function shits the bed
-  //localStorage.removeItem('access_token');
-  //localStorage.removeItem('refresh_token');
-  //localStorage.removeItem('expires_at');
-
   localStorage.clear();
 }
