@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Tracklist from "./Tracklist.jsx";
 
 
 function Tracks() {

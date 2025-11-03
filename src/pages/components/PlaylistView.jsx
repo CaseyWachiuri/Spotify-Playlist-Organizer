@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from "./Header";
-import Tracklist from "./Tracklist";
 import Tracks from "./Tracks";
 import { fetchApi } from "../../utils/auth";
 import { useParams, useNavigate } from 'react-router-dom';
