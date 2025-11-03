@@ -11,10 +11,9 @@ function Navbar() {
   };
 
   return (
-    <nav >
-        <div className="relative bg-gray-100 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-      {/* <div className="flex> */}
-        <button className="rounded-none bg-red-400 px-3 py-1 m-2 text-sm " onClick={handleLeaving} >Logout</button>
+    <nav className="bg-red-400  mb-3 ">
+      <div className="max-w-10xl h-15 flex justify-end pr-5 items-center m-auto">
+        <button onClick={handleLeaving}>Logout</button>
       </div>
     </nav>
   );

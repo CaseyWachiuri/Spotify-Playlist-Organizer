@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from "./Header";
 import Tracks from "./Tracks";
+import Navbar from "../components/Navbar";
 import { fetchApi } from "../../utils/auth";
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -83,7 +84,7 @@ function PlaylistView() {
 
   const trackList = tracks.map((item, index) => {
     return (
-      <li className="border-t-1 border-gray-100 text-black-800 m-5 p-1 flex justify-between ">
+      <li className="border-t-1 border-gray-100 text-black-600 m-5 p-1 flex justify-between ">
         <div className="w-5/12 truncate pr-4 ">
           { item.track.name }
         </div>
@@ -102,9 +103,12 @@ function PlaylistView() {
 
   return (
     <>
-      <Header playlist={playlistInfo} handleDups={handleDups} />
-      <Tracks />
-      <ul > { trackList }</ul>
+      <Navbar />
+      <div className="rounded-2xl shadow-lg m-3 p-2">
+        <Header playlist={playlistInfo} handleDups={handleDups} />
+        <Tracks />
+        <ul > { trackList }</ul>
+      </div>
     </>
   )
 }
