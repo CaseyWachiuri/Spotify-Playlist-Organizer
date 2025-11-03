@@ -4,6 +4,7 @@ import Tracks from "./Tracks";
 import { fetchApi } from "../../utils/auth";
 import { useParams, useNavigate } from 'react-router-dom';
 
+// Add a back button later for easy navigation
 function PlaylistView() {
   const navigate = useNavigate();
   const params = useParams();
@@ -29,25 +30,6 @@ function PlaylistView() {
 
         setTracks(tracks);
 
-        const seenUrl = new Set();
-        const duplicates = [];
-        tracks.forEach((item, index) => {
-          const trackUrl = item.track?.uri;
-          if (!trackUrl) return;
-
-          if (seenUrl.has(trackUrl)) {
-            let duplicateEntry = duplicates.find(d => d.Uri === trackUrl);
-
-            if(!duplicateEntry) {
-              duplicateEntry = {Uri: trackUrl, positions: [] };
-              duplicates.push(duplicateEntry);
-            }
-            duplicateEntry.position.push(index);
-          } else {
-            seenUrl.add(trackUrl);
-          }
-        })
-
       } catch (error) {
         console.error("Something went wrong and I don't know what", error);
       }
@@ -57,10 +39,12 @@ function PlaylistView() {
   }, [playlistId, navigate]);
 
   // Function to handle duplicates
-  function handleDups() {
+  async function handleDups() {
     const seenUrl = new Set();
     const duplicates = [];
-    tracks.forEach((item, index) => {
+    const snapshotId = playlistInfo?.snapshot_id;
+
+    tracks.forEach((item) => {
       const trackUrl = item.track?.uri;
       if (!trackUrl) return;
 
@@ -68,22 +52,27 @@ function PlaylistView() {
         let duplicateEntry = duplicates.find(d => d.Uri === trackUrl);
 
         if(!duplicateEntry) {
-          duplicateEntry = {Uri: trackUrl, positions: [] };
+          duplicateEntry = {uri: trackUrl};
           duplicates.push(duplicateEntry);
         }
-        duplicateEntry.position.push(index);
       } else {
         seenUrl.add(trackUrl);
       }
     })
+
+    await fetchApi(
+      `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+      'DELETE',
+      {
+        tracks: duplicates,
+        snapshot_id: snapshotId
+      }
+    );
   }
 
   if(!playlistInfo) {
     return <div>Loading Playlists...</div>
   }
-  //console.log(tracks);
-  //const artistName = tracks.artists?.[0]?.name;
-  console.log(tracks.map((item, index) => console.log(item.track.artists?.[0]?.name)));
 
   const duration = (mil) => {
     const totalSeconds = Math.floor(mil /1000);
@@ -113,7 +102,7 @@ function PlaylistView() {
 
   return (
     <>
-      <Header playlist={playlistInfo} />
+      <Header playlist={playlistInfo} handleDups={handleDups} />
       <Tracks />
       <ul > { trackList }</ul>
     </>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function Header({playlist}) {
+function Header({playlist, handleDups}) {
   if(!playlist) return <div>Loading Playlists...</div> // add centering later
 
   return (
@@ -17,8 +17,10 @@ function Header({playlist}) {
         <div className="border flex">
           Playlist owner and duration info
         </div> */}
-        <div className="rounded-none bg-red-400 px-10 py-4 m-2 text-center text-sm ">
+        <div className="flex justify-center">
+        <button className="rounded-none bg-red-400 px-10 py-4 m-2 text-center text-sm " onClick={handleDups}>
           Delete Duplicate Songs
+        </button>
         </div>
       </div>
     </div>
