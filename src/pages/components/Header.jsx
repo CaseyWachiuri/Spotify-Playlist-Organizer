@@ -10,17 +10,15 @@ function Header({playlist}) {
         <div className="border flex m-3 p-2">
           {playlist.name}
         </div>
-        { if(playlist.description) return (
         <div className="border flex m-3 p-2">
           {playlist.description}
         </div>
-        )}
         {/* Configure this later. Sth aint right
         <div className="border flex">
           Playlist owner and duration info
         </div> */}
         <div className="rounded-none bg-red-400 px-10 py-4 m-2 text-center text-sm ">
-          Delete redundant Playlists
+          Delete Duplicate Songs
         </div>
       </div>
     </div>

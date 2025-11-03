@@ -30,6 +30,25 @@ function PlaylistView() {
 
         setTracks(tracks);
 
+        const seenUrl = new Set();
+        const duplicates = [];
+        tracks.forEach((item, index) => {
+          const trackUrl = item.track?.uri;
+          if (!trackUrl) return;
+
+          if (seenUrl.has(trackUrl)) {
+            let duplicateEntry = duplicates.find(d => d.Uri === trackUrl);
+
+            if(!duplicateEntry) {
+              duplicateEntry = {Uri: trackUrl, positions: [] };
+              duplicates.push(duplicateEntry);
+            }
+            duplicateEntry.position.push(index);
+          } else {
+            seenUrl.add(trackUrl);
+          }
+        })
+
       } catch (error) {
         console.error("Something went wrong and I don't know what", error);
       }
@@ -37,6 +56,28 @@ function PlaylistView() {
 
     fetchAllData();
   }, [playlistId, navigate]);
+
+  // Function to handle duplicates
+  function handleDups() {
+    const seenUrl = new Set();
+    const duplicates = [];
+    tracks.forEach((item, index) => {
+      const trackUrl = item.track?.uri;
+      if (!trackUrl) return;
+
+      if (seenUrl.has(trackUrl)) {
+        let duplicateEntry = duplicates.find(d => d.Uri === trackUrl);
+
+        if(!duplicateEntry) {
+          duplicateEntry = {Uri: trackUrl, positions: [] };
+          duplicates.push(duplicateEntry);
+        }
+        duplicateEntry.position.push(index);
+      } else {
+        seenUrl.add(trackUrl);
+      }
+    })
+  }
 
   if(!playlistInfo) {
     return <div>Loading Playlists...</div>
@@ -70,6 +111,7 @@ function PlaylistView() {
       </li>
     )
   })
+
   return (
     <>
       <Header playlist={playlistInfo} />
