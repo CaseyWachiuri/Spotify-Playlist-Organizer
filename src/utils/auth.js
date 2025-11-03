@@ -1,7 +1,8 @@
 const client_id = import.meta.env.VITE_CLIENT_ID;
 const client_secret = import.meta.env.VITE_CLIENT_SECRET;
-const redirecturl = "http://127.0.0.1:5173/callback"
+//const redirecturl = "http://127.0.0.1:5173/callback"
 const authUrl = new URL("https://accounts.spotify.com/authorize");
+const redirecturl = "https://spotplaylistorganizer.netlify.app/callback"
 
 // Specify the scopes that the app has in regards to the Spotify API
 const scope="user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private";
