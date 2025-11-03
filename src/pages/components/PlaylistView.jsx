@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import { fetchApi } from "../../utils/auth";
 import { useParams, useNavigate } from 'react-router-dom';
 
-// Add a back button later for easy navigation
 function PlaylistView() {
   const navigate = useNavigate();
   const params = useParams();
@@ -44,6 +43,12 @@ function PlaylistView() {
   }, [playlistId, navigate]);
 
   // Function to handle duplicates
+  /* Currently the function deletes track items but can end up deleting all the tracks in a playlist
+     Possible solutions:
+     - Save non-duplicate items into an array called non-dupes, delete the values in the playlist, then readd them with a POST/PUT command to repopulate the playlist
+     - Find a way to use the spotify positions value that is provided to delete more accurately and avoid unnecessary read/writes
+     - Add batch processing to avoid hitting the API rate limits
+  */
   async function handleDups() {
     const seenUrl = new Set();
     const duplicates = [];
