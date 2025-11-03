@@ -15,7 +15,7 @@ git clone https://github.com/CaseyWachiuri/Spotify-Playlist-Organizer.git
 
 ```
 ## Technologies used
-React, Tailwind, Firebase, Spotify Developer API
+React, Tailwind, Spotify Developer API
 
 ## Support and contact details
 github.com/CaseyWachiuri
