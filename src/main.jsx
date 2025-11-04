@@ -9,7 +9,6 @@ import Callback from "./pages/Callback";
 import PlaylistSelect from "./pages/PlaylistSelect";
 import PlaylistView from "./pages/components/PlaylistView";
 import Logout from "./pages/forcedlogout";
-import ForcedLogout from "./pages/forcedlogout";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
