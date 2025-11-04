@@ -2,52 +2,11 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-
-import FailedLogin from "./pages/FailedLogin";
-import ErrorPage from "./pages/Error";
-import Callback from "./pages/Callback";
-import PlaylistSelect from "./pages/PlaylistSelect";
-import PlaylistView from "./pages/components/PlaylistView";
-import Logout from "./pages/forcedlogout";
+import { routes } from './routes'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/failedLogin',
-    element: <FailedLogin />,
-  },
-  {
-    path: '/callback',
-    element: <Callback />
-  },
-  {
-    path: '/selectplaylist',
-    element: <PlaylistSelect />
-  },
-  {
-    path:'/playlist/:playlistId',
-    element: <PlaylistView />
-  },
-  {
-    path: '/logout',
-    element: <Logout />
-  },
-  {
-    path: '/forcedlogout',
-    element: <ForcedLogout />
-  }
-  /* {
-  // Display Playlist Tracks
-    path: '',
-    element: < />
-  }*/
-]);
+const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
